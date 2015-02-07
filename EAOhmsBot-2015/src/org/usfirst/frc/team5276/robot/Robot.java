@@ -31,6 +31,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		System.out.println("This is working!");
         // instantiate the command used for the autonomous period
         autonomousCommand = new AutonomousCommand();
     }

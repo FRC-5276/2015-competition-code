@@ -14,7 +14,9 @@ public class DrivetrainSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	public RobotDrive robotDrive = new RobotDrive(1, 2);
+	public RobotDrive yDrive = new RobotDrive(1, 2);
+	public Talon frontXDrive = new Talon(3);
+	public Talon backXDrive = new Talon(4);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -22,7 +24,11 @@ public class DrivetrainSubsystem extends Subsystem {
     }
     
     public void arcadeDrive(double linear, double rotation){
-    	robotDrive.arcadeDrive(linear, rotation);
+    	yDrive.arcadeDrive(linear, rotation);
+    }
+    
+    public void setXDrive(double speed){
+    	//TODO define X drive method
     }
     
     
