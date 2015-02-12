@@ -22,7 +22,8 @@ public class ArcadeDriveCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	while(!isFinished()){
-    		Robot.drivetrainSubsystem.arcadeDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick1.getX());
+    		double powerScale = (Robot.oi.joystick1.getThrottle()-1)/2;
+    		Robot.drivetrainSubsystem.arcadeDrive(Robot.oi.joystick1.getY()*powerScale, Robot.oi.joystick1.getX()*powerScale);
     	}
     }
 

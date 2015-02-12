@@ -1,28 +1,28 @@
-
 package org.usfirst.frc.team5276.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team5276.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AutonomousCommand extends Command {
+public class TankDriveCommand extends Command {
 
-    public AutonomousCommand() {
+    public TankDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drivetrainSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	while(!isFinished()){
+    		Robot.drivetrainSubsystem.tankDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick2.getY());
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

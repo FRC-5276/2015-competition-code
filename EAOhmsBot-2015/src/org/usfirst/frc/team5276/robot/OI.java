@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5276.robot;
 
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
@@ -16,7 +17,7 @@ public class OI {
     // number it is.
     public Joystick joystick1 = new Joystick(0);
     // Button button = new JoystickButton(stick, buttonNumber);
-    
+    public Joystick joystick2 = new Joystick(1);
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
     // commands the same as any other Button.
@@ -36,5 +37,8 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+    
+    //GYRO
+    public Gyro gyro = new Gyro(1);
 }
 
