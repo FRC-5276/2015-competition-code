@@ -1,14 +1,18 @@
 
 package org.usfirst.frc.team5276.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
 import org.usfirst.frc.team5276.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team5276.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team5276.robot.subsystems.OmniDriveSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,6 +25,8 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
+	public static final OmniDriveSubsystem omnidriveSubsystem = new OmniDriveSubsystem();
+	public static final ConveyorSubsystem conveyorSubsystem = new ConveyorSubsystem();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -81,4 +87,21 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    
+    CameraServer server;
+    
+    public Robot(){
+    	String cam = "cam";
+    	
+    	server = CameraServer.getInstance();
+    	server.setQuality(50);
+    	server.startAutomaticCapture(cam);
+    }
+    
+    public void operatorControl(){
+    	while (isOperatorControl() && isEnabled()){
+    		Timer.delay(0.005);
+    	}
+    }
+    
 }

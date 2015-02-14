@@ -1,7 +1,10 @@
 package org.usfirst.frc.team5276.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
 
@@ -36,5 +39,16 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+    public Button upButton = new JoystickButton(joystick2, 1);
+    public Button downButton = new JoystickButton(joystick2, 2);
+    upButton.whenPressed(new UpStageCommand());
+    
+    //GYRO
+    public Gyro gyro = new Gyro(1);
+    //ENCODER
+    public Encoder enc0 = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    public Encoder enc1 = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    public Encoder enc2 = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    
 }
 

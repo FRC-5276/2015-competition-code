@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5276.robot.subsystems;
 
+import org.usfirst.frc.team5276.robot.RobotMap;
 import org.usfirst.frc.team5276.robot.commands.ArcadeDriveCommand;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -14,7 +15,7 @@ public class DrivetrainSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	public RobotDrive yDrive = new RobotDrive(1, 2);
+	public RobotDrive yDrive = new RobotDrive(RobotMap.leftMotor, RobotMap.rightMotor);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
