@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team5276.robot.commands.UpStageCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -41,7 +42,11 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
     public Button upButton = new JoystickButton(joystick2, 1);
     public Button downButton = new JoystickButton(joystick2, 2);
-    upButton.whenPressed(new UpStageCommand());
+    
+    public OI(){
+    	upButton.whenPressed(new UpStageCommand());
+    }
+    
     
     //GYRO
     public Gyro gyro = new Gyro(1);
