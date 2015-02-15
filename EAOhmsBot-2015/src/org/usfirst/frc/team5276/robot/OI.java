@@ -52,7 +52,7 @@ public class OI {
     public Gyro gyro = new Gyro(1);
     //ENCODER
     public Encoder leftDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-    public Encoder rightDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    public Encoder rightDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X); //TODO set encoder channels
     public Encoder conveyorEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
     
 }
