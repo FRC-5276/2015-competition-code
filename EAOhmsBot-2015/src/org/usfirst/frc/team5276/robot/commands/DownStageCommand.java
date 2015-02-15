@@ -21,7 +21,7 @@ public class DownStageCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		double original = Robot.oi.enc2.get();
+		double original = Robot.oi.conveyorEncoder.get();
 		double objective = original - 0.5;
 		while (original!=objective) {
 			Robot.conveyorSubsystem.setConveyorStageDown();

@@ -51,9 +51,9 @@ public class OI {
     //GYRO
     public Gyro gyro = new Gyro(1);
     //ENCODER
-    public Encoder enc0 = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-    public Encoder enc1 = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-    public Encoder enc2 = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    public Encoder leftDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    public Encoder rightDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    public Encoder conveyorEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
     
 }
 
