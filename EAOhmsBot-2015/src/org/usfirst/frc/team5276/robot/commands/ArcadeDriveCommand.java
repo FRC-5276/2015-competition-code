@@ -8,7 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ArcadeDriveCommand extends Command {
-
+	
+	
+	boolean wasUpPressed = false;
+	boolean wasDownPressed = false;
     public ArcadeDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drivetrainSubsystem);
@@ -24,7 +27,19 @@ public class ArcadeDriveCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	while(!isFinished()){
-    		Robot.drivetrainSubsystem.arcadeDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick1.getX());
+    		double throttle = (Robot.oi.joystick1.getThrottle()+1)/2;
+    		Robot.drivetrainSubsystem.arcadeDrive(Robot.oi.joystick1.getY()*throttle, Robot.oi.joystick1.getX()*throttle);
+    		Robot.conveyorSubsystem.conveyorMotor.set(Robot.oi.joystick2.getY());
+//    		if(Robot.oi.joystick1.getTrigger() && !wasUpPressed){
+//    			Robot.conveyorSubsystem.setSetpointRelative(12.0);
+//    			//System.out.println("UP");
+//    		}else if(Robot.oi.joystick1.getRawButton(2) && !wasDownPressed){
+//    			Robot.conveyorSubsystem.setSetpointRelative(-12.0);
+//    			System.out.println("DOWN");
+//    		}
+//    		
+//    		wasUpPressed = Robot.oi.joystick1.getTrigger();
+//    		wasDownPressed = Robot.oi.joystick1.getRawButton(2);
     	}
     }
 

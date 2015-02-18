@@ -43,13 +43,12 @@ public class OI {
     public Button downButton = new JoystickButton(joystick1, 2);
     
     public OI(){
-    	//upButton.whenPressed(new SetConveyorCommand(12.0));
-    	//downButton.whenPressed(new SetConveyorCommand(0.0));
+    	
     }
     
     
     //GYRO
-    public Gyro gyro = new Gyro(1);
+    //public Gyro gyro = new Gyro(1);
     //ENCODER
 //    public Encoder leftDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 //    public Encoder rightDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X); //TODO set encoder channels
