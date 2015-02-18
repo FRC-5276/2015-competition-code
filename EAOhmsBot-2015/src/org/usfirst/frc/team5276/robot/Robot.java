@@ -11,9 +11,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
 import org.usfirst.frc.team5276.robot.subsystems.DrivetrainSubsystem;
-import org.usfirst.frc.team5276.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team5276.robot.subsystems.OmniDriveSubsystem;
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -22,10 +19,7 @@ import org.usfirst.frc.team5276.robot.subsystems.OmniDriveSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
-	public static final OmniDriveSubsystem omnidriveSubsystem = new OmniDriveSubsystem();
 	public static final ConveyorSubsystem conveyorSubsystem = new ConveyorSubsystem();
 	public static OI oi;
 
@@ -49,6 +43,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+        
     }
 
     /**
@@ -91,11 +86,16 @@ public class Robot extends IterativeRobot {
     CameraServer server;
     
     public Robot(){
-    	String cam = "cam";
+    	try{
+    		String cam = "cam0";
+        	
+        	server = CameraServer.getInstance();
+        	server.setQuality(50);
+        	server.startAutomaticCapture(cam);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
     	
-    	server = CameraServer.getInstance();
-    	server.setQuality(50);
-    	server.startAutomaticCapture(cam);
     }
     
     public void operatorControl(){

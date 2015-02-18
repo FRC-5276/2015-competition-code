@@ -19,4 +19,5 @@ public class RobotMap {
 	public static int rightMotor = 2;
 	public static int topMotor = 3;
 	public static int bottomMotor = 4;
+	public static int conveyorMotor = 0;
 }

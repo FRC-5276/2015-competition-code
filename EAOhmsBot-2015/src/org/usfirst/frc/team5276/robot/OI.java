@@ -1,13 +1,12 @@
 package org.usfirst.frc.team5276.robot;
 
+import org.usfirst.frc.team5276.robot.commands.SetConveyorCommand;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
-import org.usfirst.frc.team5276.robot.commands.UpStageCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,20 +39,21 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-    public Button upButton = new JoystickButton(joystick2, 1);
-    public Button downButton = new JoystickButton(joystick2, 2);
+    public Button upButton = new JoystickButton(joystick1, 1);
+    public Button downButton = new JoystickButton(joystick1, 2);
     
     public OI(){
-    	upButton.whenPressed(new UpStageCommand());
+    	//upButton.whenPressed(new SetConveyorCommand(12.0));
+    	//downButton.whenPressed(new SetConveyorCommand(0.0));
     }
     
     
     //GYRO
     public Gyro gyro = new Gyro(1);
     //ENCODER
-    public Encoder leftDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-    public Encoder rightDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X); //TODO set encoder channels
-    public Encoder conveyorEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+//    public Encoder leftDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+//    public Encoder rightDriveEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X); //TODO set encoder channels
+    
     
 }
 

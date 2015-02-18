@@ -12,10 +12,12 @@ public class ArcadeDriveCommand extends Command {
     public ArcadeDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drivetrainSubsystem);
+        requires(Robot.conveyorSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//Robot.conveyorSubsystem.enable();
     	
     }
 
@@ -33,6 +35,7 @@ public class ArcadeDriveCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	//Robot.conveyorSubsystem.disable();
     }
 
     // Called when another command which requires one or more of the same
