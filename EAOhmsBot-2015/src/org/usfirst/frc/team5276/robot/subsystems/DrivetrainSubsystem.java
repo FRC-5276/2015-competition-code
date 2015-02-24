@@ -21,14 +21,14 @@ public class DrivetrainSubsystem extends Subsystem {
         // Set the default command for a subsystem here.
         setDefaultCommand(new ArcadeDriveCommand());
     }
+    
     public void arcadeDrive(double linear, double rotation){
     	yDrive.arcadeDrive(linear, rotation);
     }
    
-    
     public void tankDrive(double leftPower, double rightPower){
     	yDrive.tankDrive(leftPower, rightPower);
     }
-    
+
 }
 

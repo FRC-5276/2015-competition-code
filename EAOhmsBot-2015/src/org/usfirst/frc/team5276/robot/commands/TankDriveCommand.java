@@ -22,6 +22,7 @@ public class TankDriveCommand extends Command {
     protected void execute() {
     	while(!isFinished()){
     		Robot.drivetrainSubsystem.tankDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick2.getY());
+    		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
     	}
     }
 

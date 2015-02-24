@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
 import org.usfirst.frc.team5276.robot.subsystems.DrivetrainSubsystem;
+import org.usfirst.frc.team5276.robot.subsystems.IntakeSubsystem;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -21,6 +22,7 @@ import org.usfirst.frc.team5276.robot.subsystems.DrivetrainSubsystem;
 public class Robot extends IterativeRobot {
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final ConveyorSubsystem conveyorSubsystem = new ConveyorSubsystem();
+	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	public static OI oi;
 
     Command autonomousCommand;
