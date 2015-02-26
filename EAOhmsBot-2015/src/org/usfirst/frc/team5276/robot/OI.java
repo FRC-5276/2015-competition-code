@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5276.robot;
 
 import org.usfirst.frc.team5276.robot.commands.SetConveyorCommand;
+import org.usfirst.frc.team5276.robot.commands.ToggleConveyorControlCommand;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
@@ -43,9 +44,13 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
     public Button upButton = new JoystickButton(joystick1, 1);
     public Button downButton = new JoystickButton(joystick1, 2);
+    public Button toggleButton = new JoystickButton(joystick1, 3);
+    public boolean manualConveyorControl = false;
     
     public OI(){
-    	
+    	upButton.whenPressed(new SetConveyorCommand(12.0));
+    	downButton.whenPressed(new SetConveyorCommand(-12.0));
+    	toggleButton.whenPressed(new ToggleConveyorControlCommand());
     }
     
     

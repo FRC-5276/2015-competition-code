@@ -13,8 +13,8 @@ public class SetConveyorCommand extends Command {
     public SetConveyorCommand(double distance) {
         requires(Robot.conveyorSubsystem);
         this.distance = distance;
-        Robot.oi.upButton.whenPressed(new SetConveyorCommand(12.0));
-    	Robot.oi.downButton.whenPressed(new SetConveyorCommand(0.0));
+        //Robot.oi.upButton.whenPressed(new SetConveyorCommand(12.0));
+    	//Robot.oi.downButton.whenPressed(new SetConveyorCommand(0.0));
     }
 
     // Called just before this Command runs the first time
@@ -24,9 +24,20 @@ public class SetConveyorCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	finished = true;
-    	System.out.println("button pressed");
+    	if (Robot.oi.manualConveyorControl==false) {
+    		Robot.conveyorSubsystem.setSetpointRelative(distance);
+    		finished = true;
+//    		System.out.println("Button pressed. ");
+    		if (distance == 12.0) {
+    			System.out.println("Up Button Pressed");
+    		}
+    		else {
+    			System.out.println("Down Button Pressed");
+    		}
+    	}
+    	else if (Robot.oi.manualConveyorControl==true) {
+    		Robot.conveyorSubsystem.setSetpointRelative(Robot.oi.joystick1.getY());
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
