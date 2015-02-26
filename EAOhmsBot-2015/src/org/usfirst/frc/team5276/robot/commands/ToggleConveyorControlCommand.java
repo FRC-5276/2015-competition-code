@@ -21,6 +21,14 @@ public class ToggleConveyorControlCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.oi.manualConveyorControl = !Robot.oi.manualConveyorControl;
+    	String conveyorControlType;
+    	if (Robot.oi.manualConveyorControl==true) {
+    		conveyorControlType = "MANUAL";
+    	}
+    	else {
+    		conveyorControlType = "STAGE CONTROL";
+    	}
+    	System.out.println("The CONVEYOR CONTROL was SWITCHED to " + conveyorControlType + ". ");
     	cancel();
 //    	if (Robot.oi.manualConveyorControl==true) {
 //    		Robot.oi.manualConveyorControl = false;

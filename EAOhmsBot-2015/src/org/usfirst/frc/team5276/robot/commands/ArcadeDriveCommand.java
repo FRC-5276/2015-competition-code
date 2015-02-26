@@ -3,6 +3,7 @@ package org.usfirst.frc.team5276.robot.commands;
 import org.usfirst.frc.team5276.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -41,7 +42,11 @@ public class ArcadeDriveCommand extends Command {
 //    		
 //    		wasUpPressed = Robot.oi.joystick1.getTrigger();
 //    		wasDownPressed = Robot.oi.joystick1.getRawButton(2);
+    		SmartDashboard.putNumber("Speed Constant", throttle);
+    		double directionHeadedDegrees = Math.atan2(Robot.oi.joystick1.getY(), Robot.oi.joystick1.getX());
+    		SmartDashboard.putNumber("Direction Headed", directionHeadedDegrees);
     	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
