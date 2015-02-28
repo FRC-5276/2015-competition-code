@@ -24,6 +24,22 @@ public class AutonomousCommandGroup2 extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new MoveDistanceCommand(12.0, 1));
+    	
+    	//Variables subject to change. Values are guessed.
+    	int firstMove = 12;
+    	int secondMove = 12;
+    	int distanceBetweenCrates = 15;//in feet
+    	addSequential(new MoveDistanceCommand(firstMove, 1));
+    	addSequential(new RotateRobotCommand(90));
+    	addSequential(new MoveDistanceCommand(secondMove, 1));
+    	addSequential(new SetConveyorCommand(12));
+    	addSequential(new MoveDistanceCommand(distanceBetweenCrates, 1));
+    	addSequential(new SetConveyorCommand(12));
+    	addSequential(new MoveDistanceCommand(distanceBetweenCrates, 1));
+    	addSequential(new SetConveyorCommand(12));
+    	addSequential(new RotateRobotCommand(90));
+    	addSequential(new MoveDistanceCommand(firstMove, 1));
+    	addSequential(new SetConveyorCommand(-36));
+    	
     }
 }
