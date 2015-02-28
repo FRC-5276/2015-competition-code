@@ -7,23 +7,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TankDriveCommand extends Command {
+public class RotateRobotCommand extends Command {
 
-    public TankDriveCommand() {
+	public double rotationInDegrees;
+	
+    public RotateRobotCommand(double rotationInDegrees) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.drivetrainSubsystem);
+        // eg. requires(chassis);
+    	requires(Robot.drivetrainSubsystem);
+    	this.rotationInDegrees = rotationInDegrees;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.drivetrainSubsystem.rotateRobot(rotationInDegrees);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(!isFinished()){
-    		Robot.drivetrainSubsystem.tankDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick2.getY());
-//    		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

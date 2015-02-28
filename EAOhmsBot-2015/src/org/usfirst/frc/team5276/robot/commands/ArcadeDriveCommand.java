@@ -31,7 +31,7 @@ public class ArcadeDriveCommand extends Command {
     		double throttle = (Robot.oi.joystick1.getThrottle()+1)/2;
     		Robot.drivetrainSubsystem.arcadeDrive(Robot.oi.joystick1.getY()*throttle, Robot.oi.joystick1.getX()*throttle);
 //    		Robot.conveyorSubsystem.conveyorMotor.set(Robot.oi.joystick2.getY());
-    		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
+//    		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
 //    		if(Robot.oi.joystick1.getTrigger() && !wasUpPressed){
 //    			Robot.conveyorSubsystem.setSetpointRelative(12.0);
 //    			//System.out.println("UP");
@@ -43,8 +43,7 @@ public class ArcadeDriveCommand extends Command {
 //    		wasUpPressed = Robot.oi.joystick1.getTrigger();
 //    		wasDownPressed = Robot.oi.joystick1.getRawButton(2);
     		SmartDashboard.putNumber("Speed Constant", throttle);
-    		double directionHeadedDegrees = Math.atan2(Robot.oi.joystick1.getY(), Robot.oi.joystick1.getX());
-    		SmartDashboard.putNumber("Direction Headed", directionHeadedDegrees);
+
     	}
     	
     }

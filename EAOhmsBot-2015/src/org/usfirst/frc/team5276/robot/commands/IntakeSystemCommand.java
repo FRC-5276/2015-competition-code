@@ -7,11 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TankDriveCommand extends Command {
+public class IntakeSystemCommand extends Command {
 
-    public TankDriveCommand() {
+    public IntakeSystemCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.drivetrainSubsystem);
+        // eg. requires(chassis);
+    	requires(Robot.intakeSubsystem);
     }
 
     // Called just before this Command runs the first time
@@ -20,10 +21,8 @@ public class TankDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(!isFinished()){
-    		Robot.drivetrainSubsystem.tankDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick2.getY());
-//    		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
-    	}
+    	Robot.intakeSubsystem.setIntake(Robot.oi.joystick4.getY());
+    	Robot.intakeSubsystem.setIntake(Robot.oi.joystick4.getY(), Robot.oi.joystick4.getX());
     }
 
     // Make this return true when this Command no longer needs to run execute()

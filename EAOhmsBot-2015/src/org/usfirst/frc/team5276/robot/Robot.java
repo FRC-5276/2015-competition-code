@@ -7,8 +7,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team5276.robot.commands.AutonomousCommandGroup1;
+import org.usfirst.frc.team5276.robot.commands.AutonomousCommandGroup2;
 import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
 import org.usfirst.frc.team5276.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team5276.robot.subsystems.IntakeSubsystem;
@@ -24,8 +28,10 @@ public class Robot extends IterativeRobot {
 	public static final ConveyorSubsystem conveyorSubsystem = new ConveyorSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	public static OI oi;
+	public static final double distanceBetweenDriveMotors = 2.0; //TODO get distanceBetweenDriveMotors (feet)
 
     Command autonomousCommand;
+    SendableChooser autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -35,7 +41,10 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		System.out.println("This is working!");
         // instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousCommand();
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Autonomous Option 1", new AutonomousCommandGroup1());
+        autoChooser.addObject("Autonomous Option 1", new AutonomousCommandGroup2());
+        SmartDashboard.putData("Autonomous Mode Chooser", autoChooser);
     }
 	
 	public void disabledPeriodic() {
@@ -44,8 +53,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
-        
+    	autonomousCommand = (Command) autoChooser.getSelected();
+    	autonomousCommand.start();
     }
 
     /**

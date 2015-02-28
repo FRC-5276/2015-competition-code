@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5276.robot.subsystems;
 
 import org.usfirst.frc.team5276.robot.RobotMap;
+import org.usfirst.frc.team5276.robot.commands.IntakeSystemCommand;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
@@ -29,6 +30,7 @@ public class IntakeSubsystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new IntakeSystemCommand());
     }
 
 }
