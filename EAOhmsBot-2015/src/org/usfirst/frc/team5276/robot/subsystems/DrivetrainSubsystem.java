@@ -2,7 +2,7 @@ package org.usfirst.frc.team5276.robot.subsystems;
 
 import org.usfirst.frc.team5276.robot.Robot;
 import org.usfirst.frc.team5276.robot.RobotMap;
-import org.usfirst.frc.team5276.robot.commands.ArcadeDriveCommand;
+import org.usfirst.frc.team5276.robot.commands.TankDriveCommand;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -16,15 +16,15 @@ public class DrivetrainSubsystem extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public Encoder leftEncoder = new Encoder(2, 3, false, Encoder.EncodingType.k4X); //TODO change one of the encoders invert motor value to true
+	public Encoder leftEncoder = new Encoder(2, 3, false, Encoder.EncodingType.k4X); 
 	public Encoder rightEncoder = new Encoder(4, 5, false, Encoder.EncodingType.k4X);
-	
+	//TODO change one of the encoders invert motor value to true
 	
 	public RobotDrive yDrive = new RobotDrive(RobotMap.leftMotor, RobotMap.rightMotor);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new ArcadeDriveCommand());
+        setDefaultCommand(new TankDriveCommand());
     }
     
     public void arcadeDrive(double linear, double rotation){

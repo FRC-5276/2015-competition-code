@@ -43,7 +43,7 @@ public class SetConveyorCommand extends Command {
     		SmartDashboard.putNumber("Stage Number", stageNumber);
     	}
     	else if (Robot.oi.manualConveyorControl==true) {
-    		Robot.conveyorSubsystem.setSetpointRelative(Robot.oi.joystick2.getY());
+    		Robot.conveyorSubsystem.setSetpointRelative(Robot.oi.joystick3.getY());
     	}
     	SmartDashboard.putBoolean("Manual Conveyor Control", Robot.oi.manualConveyorControl);
     }

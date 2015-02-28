@@ -42,9 +42,9 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-    public Button upButton = new JoystickButton(joystick1, 1);
-    public Button downButton = new JoystickButton(joystick1, 2);
-    public Button toggleButton = new JoystickButton(joystick1, 3);
+    public Button upButton = new JoystickButton(joystick3, 1);
+    public Button downButton = new JoystickButton(joystick3, 2);
+    public Button toggleButton = new JoystickButton(joystick3, 3);
     public boolean manualConveyorControl = false;
     
     public OI(){
