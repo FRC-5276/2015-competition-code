@@ -28,14 +28,18 @@ public class AutonomousCommandGroup2 extends CommandGroup {
     	//Variables subject to change. Values are guessed.
     	int firstMove = 12;
     	int secondMove = 12;
-    	int distanceBetweenCrates = 15;//in feet
+    	int distanceBetweenCrates = 33;
+    	//in inches
     	addSequential(new MoveDistanceCommand(firstMove, 1));
     	addSequential(new RotateRobotCommand(90));
     	addSequential(new MoveDistanceCommand(secondMove, 1));
+    	addSequential(new IntakeSystemAutonomousCommand(-1));
     	addSequential(new SetConveyorCommand(12));
     	addSequential(new MoveDistanceCommand(distanceBetweenCrates, 1));
+    	addSequential(new IntakeSystemAutonomousCommand(-1));
     	addSequential(new SetConveyorCommand(12));
     	addSequential(new MoveDistanceCommand(distanceBetweenCrates, 1));
+    	addSequential(new IntakeSystemAutonomousCommand(-1));
     	addSequential(new SetConveyorCommand(12));
     	addSequential(new RotateRobotCommand(90));
     	addSequential(new MoveDistanceCommand(firstMove, 1));

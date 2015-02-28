@@ -28,7 +28,6 @@ public class Robot extends IterativeRobot {
 	public static final ConveyorSubsystem conveyorSubsystem = new ConveyorSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	public static OI oi;
-	public static final double distanceBetweenDriveMotors = 2.0; //TODO get distanceBetweenDriveMotors (feet)
 
     Command autonomousCommand;
     SendableChooser autoChooser;

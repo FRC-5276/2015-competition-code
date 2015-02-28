@@ -19,6 +19,9 @@ public class DrivetrainSubsystem extends Subsystem {
 	public Encoder leftEncoder = new Encoder(2, 3, false, Encoder.EncodingType.k4X); 
 	public Encoder rightEncoder = new Encoder(4, 5, false, Encoder.EncodingType.k4X);
 	//TODO change one of the encoders invert motor value to true
+	public static final double DriveMotorRatio = 0.05;	// input:output
+	public static final double WheelRadius = 2;	// in inches
+	public static final double DistanceBetweenDriveMotors = 2;	// in inches
 	
 	public RobotDrive yDrive = new RobotDrive(RobotMap.leftMotor, RobotMap.rightMotor);
 	
@@ -38,8 +41,8 @@ public class DrivetrainSubsystem extends Subsystem {
     public void moveDistance(double distance, double speed) {
     	double currentLeftEncoderValue = leftEncoder.getDistance();
     	double currentRightEncoderValue = rightEncoder.getDistance();
-    	leftEncoder.setDistancePerPulse(12); //	TODO get DistancePerPulse for motors
-    	rightEncoder.setDistancePerPulse(12);
+    	leftEncoder.setDistancePerPulse(2*Math.PI*WheelRadius); //	TODO get DistancePerPulse for motors
+    	rightEncoder.setDistancePerPulse(2*Math.PI*WheelRadius);
     	double desiredLeftEncoderValue = currentLeftEncoderValue + distance;
     	double desiredRightEncoderValue = currentRightEncoderValue + distance;
     	while (leftEncoder.getDistance() != desiredLeftEncoderValue && rightEncoder.getDistance() != desiredRightEncoderValue) {
@@ -57,9 +60,9 @@ public class DrivetrainSubsystem extends Subsystem {
     	}
     	double currentLeftEncoderValue = leftEncoder.getDistance();
     	double currentRightEncoderValue = rightEncoder.getDistance();
-    	leftEncoder.setDistancePerPulse(12);
-    	rightEncoder.setDistancePerPulse(12);
-    	double distance = Math.PI*Robot.distanceBetweenDriveMotors*rotationInDegrees/180;
+    	leftEncoder.setDistancePerPulse(2*Math.PI*WheelRadius); //	TODO get DistancePerPulse for motors
+    	rightEncoder.setDistancePerPulse(2*Math.PI*WheelRadius);
+    	double distance = Math.PI*DistanceBetweenDriveMotors*rotationInDegrees/180;
     	double desiredLeftEncoderValue = currentLeftEncoderValue - distance;
     	double desiredRightEncoderValue = currentRightEncoderValue + distance;
     	while (leftEncoder.getDistance() != desiredLeftEncoderValue && rightEncoder.getDistance() != desiredRightEncoderValue) {
