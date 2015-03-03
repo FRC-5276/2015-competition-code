@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
-import org.usfirst.frc.team5276.robot.commands.AutonomousCommandGroup1;
-import org.usfirst.frc.team5276.robot.commands.AutonomousCommandGroup2;
+import org.usfirst.frc.team5276.robot.commands.SampleAutonomous;
+import org.usfirst.frc.team5276.robot.commands.PickUpCratesAutonomous;
 import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
 import org.usfirst.frc.team5276.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team5276.robot.subsystems.IntakeSubsystem;
@@ -41,8 +41,8 @@ public class Robot extends IterativeRobot {
 		System.out.println("This is working!");
         // instantiate the command used for the autonomous period
         autoChooser = new SendableChooser();
-        autoChooser.addDefault("Autonomous Option 1", new AutonomousCommandGroup1());
-        autoChooser.addObject("Autonomous Option 1", new AutonomousCommandGroup2());
+        autoChooser.addDefault("Autonomous Option 1", new SampleAutonomous());
+        autoChooser.addObject("Autonomous Option 2", new PickUpCratesAutonomous());
         SmartDashboard.putData("Autonomous Mode Chooser", autoChooser);
     }
 	
