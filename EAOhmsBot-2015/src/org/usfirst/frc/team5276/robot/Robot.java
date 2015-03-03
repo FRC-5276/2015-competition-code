@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team5276.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team5276.robot.commands.SampleAutonomous;
 import org.usfirst.frc.team5276.robot.commands.PickUpCratesAutonomous;
 import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;

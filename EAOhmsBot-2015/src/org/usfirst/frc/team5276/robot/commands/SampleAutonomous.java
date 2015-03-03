@@ -26,14 +26,7 @@ public class SampleAutonomous extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new SetConveyorCommand(12.0));
-    	addSequential(new MoveDistanceCommand(12, 1));
-    	addSequential(new SetConveyorCommand(-12.0));
-    	addSequential(new MoveDistanceCommand(-12, 1));
-    	addSequential(new RotateRobotCommand(-90));
-    	addSequential(new SetConveyorCommand(12.0));
-    	addSequential(new RotateRobotCommand(90));
-    	addSequential(new MoveDistanceCommand(12, 1));
-    	addSequential(new SetConveyorCommand(-12.0));
+    	
+    	addSequential(new MoveDistanceCommand(12, 0.75));
     }
 }
