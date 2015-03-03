@@ -1,5 +1,8 @@
 package org.usfirst.frc.team5276.robot;
 
+import org.usfirst.frc.team5276.robot.commands.IntakeSystemAutonomousCommand;
+import org.usfirst.frc.team5276.robot.commands.MoveDistanceCommand;
+import org.usfirst.frc.team5276.robot.commands.RotateRobotCommand;
 import org.usfirst.frc.team5276.robot.commands.SetConveyorCommand;
 import org.usfirst.frc.team5276.robot.commands.ToggleConveyorControlCommand;
 
@@ -8,6 +11,7 @@ import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -51,6 +55,15 @@ public class OI {
     	upButton.whenPressed(new SetConveyorCommand(12.0));
     	downButton.whenPressed(new SetConveyorCommand(-12.0));
     	toggleButton.whenPressed(new ToggleConveyorControlCommand());
+    	SmartDashboard.putData("Conveyor Belt Toggle", new ToggleConveyorControlCommand());
+    	SmartDashboard.putData("Rotate Right", new RotateRobotCommand(90));
+    	SmartDashboard.putData("Rotate Left", new RotateRobotCommand(-90));
+    	SmartDashboard.putData("Up Conveyor Stage", new SetConveyorCommand(12));
+    	SmartDashboard.putData("Down Conveyor Stage", new SetConveyorCommand(-12));
+    	SmartDashboard.putData("Inake In", new IntakeSystemAutonomousCommand(1));
+    	SmartDashboard.putData("Intake Out", new IntakeSystemAutonomousCommand(-1));
+    	SmartDashboard.putData("Move Forward", new MoveDistanceCommand(12, 0.5));
+    	SmartDashboard.putData("Move Backward", new MoveDistanceCommand(-12, -0.5));
     }
     
     

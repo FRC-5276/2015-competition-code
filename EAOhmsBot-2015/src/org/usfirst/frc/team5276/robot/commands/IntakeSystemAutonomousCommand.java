@@ -24,6 +24,7 @@ public class IntakeSystemAutonomousCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//Setes Intake system to in or out.
     	Robot.intakeSubsystem.setIntake(speed);
     }
 
