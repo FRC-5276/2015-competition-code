@@ -34,16 +34,16 @@ public class PickUpCratesAutonomous extends CommandGroup {
     	addSequential(new RotateRobotCommand(90));
     	addSequential(new MoveDistanceCommand(secondMove, 1));
     	addSequential(new IntakeSystemAutonomousCommand(-1));
-    	addSequential(new SetConveyorCommand(12));
+    	addSequential(new SetConveyorStageCommand(12));
     	addSequential(new MoveDistanceCommand(distanceBetweenCrates, 1));
     	addSequential(new IntakeSystemAutonomousCommand(-1));
-    	addSequential(new SetConveyorCommand(12));
+    	addSequential(new SetConveyorStageCommand(12));
     	addSequential(new MoveDistanceCommand(distanceBetweenCrates, 1));
     	addSequential(new IntakeSystemAutonomousCommand(-1));
-    	addSequential(new SetConveyorCommand(12));
+    	addSequential(new SetConveyorStageCommand(12));
     	addSequential(new RotateRobotCommand(90));
     	addSequential(new MoveDistanceCommand(firstMove, 1));
-    	addSequential(new SetConveyorCommand(-36));
+    	addSequential(new SetConveyorStageCommand(-36));
     	
     }
 }

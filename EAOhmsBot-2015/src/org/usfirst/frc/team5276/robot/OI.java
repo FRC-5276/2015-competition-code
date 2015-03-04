@@ -3,7 +3,7 @@ package org.usfirst.frc.team5276.robot;
 import org.usfirst.frc.team5276.robot.commands.IntakeSystemAutonomousCommand;
 import org.usfirst.frc.team5276.robot.commands.MoveDistanceCommand;
 import org.usfirst.frc.team5276.robot.commands.RotateRobotCommand;
-import org.usfirst.frc.team5276.robot.commands.SetConveyorCommand;
+import org.usfirst.frc.team5276.robot.commands.SetConveyorStageCommand;
 import org.usfirst.frc.team5276.robot.commands.ToggleConveyorControlCommand;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -52,18 +52,23 @@ public class OI {
     public boolean manualConveyorControl = false;
     
     public OI(){
-    	upButton.whenPressed(new SetConveyorCommand(12.0));
-    	downButton.whenPressed(new SetConveyorCommand(-12.0));
+    	///upButton.whenPressed(new SetConveyorStageCommand(12.0));
+    	///downButton.whenPressed(new SetConveyorStageCommand(-12.0));
     	toggleButton.whenPressed(new ToggleConveyorControlCommand());
     	SmartDashboard.putData("Conveyor Belt Toggle", new ToggleConveyorControlCommand());
     	SmartDashboard.putData("Rotate Right", new RotateRobotCommand(90));
     	SmartDashboard.putData("Rotate Left", new RotateRobotCommand(-90));
-    	SmartDashboard.putData("Up Conveyor Stage", new SetConveyorCommand(12));
-    	SmartDashboard.putData("Down Conveyor Stage", new SetConveyorCommand(-12));
+    	SmartDashboard.putData("Up Conveyor Stage", new SetConveyorStageCommand(12));
+    	SmartDashboard.putData("Down Conveyor Stage", new SetConveyorStageCommand(-12));
     	SmartDashboard.putData("Inake In", new IntakeSystemAutonomousCommand(1));
     	SmartDashboard.putData("Intake Out", new IntakeSystemAutonomousCommand(-1));
     	SmartDashboard.putData("Move Forward", new MoveDistanceCommand(12, 0.5));
     	SmartDashboard.putData("Move Backward", new MoveDistanceCommand(-12, -0.5));
+    	
+    	SmartDashboard.putData("Stage 0", new SetConveyorStageCommand(0));
+    	SmartDashboard.putData("Stage 1", new SetConveyorStageCommand(1));
+    	SmartDashboard.putData("Stage 2", new SetConveyorStageCommand(2));
+    	SmartDashboard.putData("Stage 3", new SetConveyorStageCommand(3));
     }
     
     

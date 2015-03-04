@@ -2,6 +2,7 @@ package org.usfirst.frc.team5276.robot.subsystems;
 
 import org.usfirst.frc.team5276.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -16,9 +17,16 @@ public class ConveyorSubsystem extends PIDSubsystem {
 	
 	public Encoder conveyorEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 	public Talon conveyorMotor = new Talon(RobotMap.conveyorMotor);
+	public DigitalInput upSwitch = new DigitalInput(RobotMap.upSwitchPort);
+	public DigitalInput downSwitch = new DigitalInput(RobotMap.downSwitchPort);
 	public static final double SPROCKET_DIAMETER = 5; //inches
 	public static final double SPROCKET_CIRCUMFERENCE = SPROCKET_DIAMETER * Math.PI;
 	public static final double GEAR_RATIO = 1/40; // output/input
+	
+	public static final double STAGE_DISTANCE = 12.0;
+	
+	
+	public int lastStage = 0;
 
 //	public PIDSubsystem conveyorOutput = new PIDSubsystem(0.1, 0.0, 0.0) {
 //		
@@ -49,8 +57,7 @@ public class ConveyorSubsystem extends PIDSubsystem {
         // enable() - Enables the PID controller.
     	setOutputRange(-0.5, 0.5);
     	//enable();
-    	//conveyorOutput.enable();
-    	conveyorEncoder.setDistancePerPulse(SPROCKET_CIRCUMFERENCE/360);
+    	//conveyorOutput.enable();    	conveyorEncoder.setDistancePerPulse(SPROCKET_CIRCUMFERENCE/360);
     }
     
     public void initDefaultCommand() {
@@ -65,9 +72,21 @@ public class ConveyorSubsystem extends PIDSubsystem {
     	return conveyorEncoder.getDistance();
     }
     
+    public void moveToStage(int stageNumber){
+    	if(stageNumber > 3 || stageNumber < 0){
+    		return;
+    	}
+    	setSetpoint(STAGE_DISTANCE*stageNumber);
+    }
+    
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
+    	if(upSwitch.get() && output > 0){
+    		output = 0;
+    	}else if(downSwitch.get() && output < 0){
+    		output = 0;
+    	}
     	conveyorMotor.set(output);
     }
 }
