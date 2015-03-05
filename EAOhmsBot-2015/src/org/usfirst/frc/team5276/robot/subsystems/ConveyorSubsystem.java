@@ -17,8 +17,8 @@ public class ConveyorSubsystem extends PIDSubsystem {
 	
 	public Encoder conveyorEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 	public Talon conveyorMotor = new Talon(RobotMap.conveyorMotor);
-	public DigitalInput upSwitch = new DigitalInput(RobotMap.upSwitchPort);
-	public DigitalInput downSwitch = new DigitalInput(RobotMap.downSwitchPort);
+	//public DigitalInput upSwitch = new DigitalInput(RobotMap.upSwitchPort);
+	//public DigitalInput downSwitch = new DigitalInput(RobotMap.downSwitchPort);
 	public static final double SPROCKET_DIAMETER = 5; //inches
 	public static final double SPROCKET_CIRCUMFERENCE = SPROCKET_DIAMETER * Math.PI;
 	public static final double GEAR_RATIO = 1/40; // output/input
@@ -27,26 +27,6 @@ public class ConveyorSubsystem extends PIDSubsystem {
 	
 	
 	public int lastStage = 0;
-
-//	public PIDSubsystem conveyorOutput = new PIDSubsystem(0.1, 0.0, 0.0) {
-//		
-//		@Override
-//		protected void initDefaultCommand() {
-//			// TODO Auto-generated method stub
-//			
-//		}
-//		
-//		@Override
-//		protected void usePIDOutput(double output) {
-//			conveyorMotor.set(output);
-//		}
-//		
-//		@Override
-//		protected double returnPIDInput() {
-//			// TODO Auto-generated method stub
-//			return conveyorEncoder.getRate();
-//		}
-//	};
 
     // Initialize your subsystem here
     public ConveyorSubsystem() {
@@ -82,11 +62,11 @@ public class ConveyorSubsystem extends PIDSubsystem {
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-    	if(upSwitch.get() && output > 0){
-    		output = 0;
-    	}else if(downSwitch.get() && output < 0){
-    		output = 0;
-    	}
+//    	if(upSwitch.get() && output > 0){
+//    		output = 0;
+//    	}else if(downSwitch.get() && output < 0){
+//    		output = 0;
+//    	}
     	conveyorMotor.set(output);
     }
 }

@@ -15,12 +15,12 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;;
-	public static final int leftMotor = 1;
-	public static final int rightMotor = 2;
-	public static final int conveyorMotor = 0;
-	public static final int intakeMotorLeft = 3;
-	public static final int intakeMotorRight = 4;
+	public static int leftMotor = 1;
+	public static int rightMotor = 2;
+	public static int conveyorMotor = 0;
+	public static int intakeMotorLeft = 3;
+	public static int intakeMotorRight = 4;
 	
-	public static final int upSwitchPort = 3;
-	public static final int downSwitchPort = 4;
+	public static int upSwitchPort = 3;
+	public static int downSwitchPort = 4;
 }

@@ -22,9 +22,9 @@ import org.usfirst.frc.team5276.robot.subsystems.IntakeSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
-	public static final ConveyorSubsystem conveyorSubsystem = new ConveyorSubsystem();
-	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+	public static DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
+	public static ConveyorSubsystem conveyorSubsystem = new ConveyorSubsystem();
+	public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -91,18 +91,18 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
     
-    CameraServer server;
+//    CameraServer server;
     
     public Robot(){
-    	try{
-    		String cam = "cam0";
-        	
-        	server = CameraServer.getInstance();
-        	server.setQuality(50);
-        	server.startAutomaticCapture(cam);
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
+//    	try{
+//    		String cam = "cam0";
+//        	
+//        	server = CameraServer.getInstance();
+//        	server.setQuality(50);
+//        	server.startAutomaticCapture(cam);
+//    	}catch(Exception e){
+//    		e.printStackTrace();
+//    	}
     	
     }
     
