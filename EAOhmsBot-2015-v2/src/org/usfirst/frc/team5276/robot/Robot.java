@@ -1,19 +1,13 @@
 
 package org.usfirst.frc.team5276.robot;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5276.robot.commands.SampleAutonomous;
-import org.usfirst.frc.team5276.robot.commands.PickUpCratesAutonomous;
-import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
-import org.usfirst.frc.team5276.robot.subsystems.DrivetrainSubsystem;
-import org.usfirst.frc.team5276.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team5276.robot.commands.ExampleCommand;
+import org.usfirst.frc.team5276.robot.subsystems.ExampleSubsystem;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -22,13 +16,11 @@ import org.usfirst.frc.team5276.robot.subsystems.IntakeSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
-	public static final ConveyorSubsystem conveyorSubsystem = new ConveyorSubsystem();
-	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+
+	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 
     Command autonomousCommand;
-    SendableChooser autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -36,12 +28,8 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-		System.out.println("This is working!");
         // instantiate the command used for the autonomous period
-        autoChooser = new SendableChooser();
-        autoChooser.addDefault("Autonomous Option 1", new SampleAutonomous());
-        autoChooser.addObject("Autonomous Option 2", new PickUpCratesAutonomous());
-        SmartDashboard.putData("Autonomous Mode Chooser", autoChooser);
+        autonomousCommand = new ExampleCommand();
     }
 	
 	public void disabledPeriodic() {
@@ -50,8 +38,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-    	autonomousCommand = (Command) autoChooser.getSelected();
-    	autonomousCommand.start();
+        if (autonomousCommand != null) autonomousCommand.start();
     }
 
     /**
@@ -90,26 +77,4 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
-    
-    CameraServer server;
-    
-    public Robot(){
-    	try{
-    		String cam = "cam0";
-        	
-        	server = CameraServer.getInstance();
-        	server.setQuality(50);
-        	server.startAutomaticCapture(cam);
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-    	
-    }
-    
-    public void operatorControl(){
-    	while (isOperatorControl() && isEnabled()){
-    		Timer.delay(0.005);
-    	}
-    }
-    
 }

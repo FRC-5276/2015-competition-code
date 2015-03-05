@@ -1,26 +1,22 @@
+
 package org.usfirst.frc.team5276.robot.commands;
 
-import org.usfirst.frc.team5276.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc.team5276.robot.Robot;
 
 /**
  *
  */
-public class RotateRobotCommand extends Command {
+public class ExampleCommand extends Command {
 
-	public double rotationInDegrees;
-	
-    public RotateRobotCommand(double rotationInDegrees) {
+    public ExampleCommand() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.drivetrainSubsystem);
-    	this.rotationInDegrees = rotationInDegrees;
+        requires(Robot.exampleSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivetrainSubsystem.rotateRobot(rotationInDegrees);
     }
 
     // Called repeatedly when this Command is scheduled to run
