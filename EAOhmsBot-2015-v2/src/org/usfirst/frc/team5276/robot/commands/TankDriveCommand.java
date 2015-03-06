@@ -16,13 +16,15 @@ public class TankDriveCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.conveyorSubsystem.enableSpeedControl();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	while(!isFinished()){
     		Robot.drivetrainSubsystem.tankDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick2.getY());
-//    		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
+    		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
+    		Robot.conveyorSubsystem.setSpeedTarget(Robot.oi.joystick4.getY());
     	}
     }
 
