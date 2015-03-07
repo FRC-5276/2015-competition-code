@@ -12,7 +12,7 @@ public class SetConveyorPositionCommand extends Command {
     public SetConveyorPositionCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.conveyorSubsystem);
+    	requires(Robot.conveyor);
     }
 
     // Called just before this Command runs the first time

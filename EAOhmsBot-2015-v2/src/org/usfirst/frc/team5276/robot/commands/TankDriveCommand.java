@@ -1,7 +1,8 @@
 package org.usfirst.frc.team5276.robot.commands;
 
-import org.usfirst.frc.team5276.robot.Robot;
+import static org.usfirst.frc.team5276.robot.Robot.*;
 import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
+
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -11,66 +12,51 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class TankDriveCommand extends Command {
+	
+	
 
     public TankDriveCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.drivetrainSubsystem);
+        requires(drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	//Robot.conveyorSubsystem.enableSpeedControl();
     }
+    
+    protected void setConveyor(double setPoint){
+		conveyor.setSetpoint(setPoint);
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	while(!isFinished()){
-    		Robot.drivetrainSubsystem.tankDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick2.getY());
-    		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
-    		//Robot.conveyorSubsystem.setSpeedTarget(Robot.oi.joystick4.getY());
-    		if(Robot.oi.joystick4.getTrigger()){
-    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.setSetpoint(Robot.conveyorSubsystem.conveyorEncoder.getDistance());
-    				Robot.conveyorSubsystem.enable();
-    			}else if(Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.conveyorMotor.set(0);
-    			}
-    		}else if(Robot.oi.joystick4.getRawButton(11)){
-    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.setSetpoint(ConveyorSubsystem.STAGE_0);
-    				Robot.conveyorSubsystem.enable();
-    			}else if(Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.conveyorMotor.set(0);
-    				
-    			}
-    		}else if(Robot.oi.joystick4.getRawButton(9)){
-    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.setSetpoint(ConveyorSubsystem.STAGE_1);
-    				Robot.conveyorSubsystem.enable();
-    			}else if(Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.conveyorMotor.set(0);
-    			}
-    		}else if(Robot.oi.joystick4.getRawButton(7)){
-    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.setSetpoint(ConveyorSubsystem.STAGE_2);
-    				Robot.conveyorSubsystem.enable();
-    			}else if(Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.conveyorMotor.set(0);
-    			}
-    		}else if(Robot.oi.joystick4.getRawButton(8)){
-    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.setSetpoint(ConveyorSubsystem.STAGE_3);
-    				Robot.conveyorSubsystem.enable();
-    			}else if(Robot.conveyorSubsystem.onTarget()){
-    				Robot.conveyorSubsystem.conveyorMotor.set(0);
-    			}
+    		SmartDashboard.putNumber("Conveyor Encoder", conveyor.conveyorEncoder.getDistance());
+    		
+    		drivetrain.tankDrive(oi.joystick1.getY(), oi.joystick2.getY());
+    		intake.setIntake(oi.joystick3.getY());
+    		//conveyorSubsystem.setSpeedTarget(oi.joystick4.getY());
+    		if(oi.joystick4.getTrigger()){
+    			setConveyor(conveyor.conveyorEncoder.getDistance());
+    			conveyor.enable();
+    		}else if(oi.joystick4.getRawButton(3)){
+    			setConveyor(ConveyorSubsystem.STAGE_0);
+    			conveyor.enable();
+    		}else if(oi.joystick4.getRawButton(5)){
+    			setConveyor(ConveyorSubsystem.STAGE_1);
+    			conveyor.enable();
+    		}else if(oi.joystick4.getRawButton(4)){
+    			setConveyor(ConveyorSubsystem.STAGE_2);
+    			conveyor.enable();
+    		}else if(oi.joystick4.getRawButton(6)){
+    			setConveyor(ConveyorSubsystem.STAGE_3);
+    			conveyor.enable();
     		}else{
-    			if(Robot.conveyorSubsystem.getPIDController().isEnable()){
-    				Robot.conveyorSubsystem.disable();
-    			}
-    			Robot.conveyorSubsystem.conveyorMotor.set(Robot.oi.joystick4.getY());
+    			conveyor.disable();
+    			conveyor.conveyorMotor.set(oi.joystick4.getY());
     		}
-    		SmartDashboard.putNumber("Conveyor Encoder Value", Robot.conveyorSubsystem.conveyorEncoder.getDistance());
+    		SmartDashboard.putNumber("Conveyor Encoder Value", conveyor.conveyorEncoder.getDistance());
     	}
     }
 

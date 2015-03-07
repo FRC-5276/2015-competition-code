@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5276.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -37,6 +38,9 @@ public class OI {
     public Joystick joystick2 = new Joystick(1);
     public Joystick joystick3 = new Joystick(2);
     public Joystick joystick4 = new Joystick(3);
+
+    public OI(){
+    }
 	
 }
 

@@ -88,5 +88,23 @@ public class ConveyorSubsystem extends PIDSubsystem {
 //    	}
     	conveyorMotor.set(output);
     }
+    
+    public void setStage(int stage){
+    	
+    }
+    
+    @Override
+    public void enable(){
+    	if(getPIDController().isEnable()){
+    		super.enable();
+    	}
+    }
+    
+    @Override
+    public void disable(){
+    	if(!getPIDController().isEnable()){
+    		super.disable();
+    	}
+    }
 }
 
