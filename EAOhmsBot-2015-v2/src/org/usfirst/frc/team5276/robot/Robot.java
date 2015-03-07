@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5276.robot.commands.MoveTimeCommand;
 import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
@@ -32,8 +33,11 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		System.out.println("HELLO WORLD PLEASE WORK BLA BLA BLA");
+		LiveWindow.addActuator("conveyorSubsystem", "speedController", conveyorSubsystem.speedPIDController);
         // instantiate the command used for the autonomous period
-        autonomousCommand = new MoveTimeCommand(0.5, 3); //TODO add params to smart dashboard
+//        autonomousCommand = new MoveTimeCommand(0.5, 3); //TODO add params to smart dashboard
+//		autonomousCommand = conveyorMotor.set(0.1);
     }
 	
 	public void disabledPeriodic() {

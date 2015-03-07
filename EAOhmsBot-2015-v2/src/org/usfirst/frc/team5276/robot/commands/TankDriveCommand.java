@@ -1,8 +1,11 @@
 package org.usfirst.frc.team5276.robot.commands;
 
 import org.usfirst.frc.team5276.robot.Robot;
+import org.usfirst.frc.team5276.robot.subsystems.ConveyorSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -16,7 +19,7 @@ public class TankDriveCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.conveyorSubsystem.enableSpeedControl();
+    	//Robot.conveyorSubsystem.enableSpeedControl();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -24,7 +27,29 @@ public class TankDriveCommand extends Command {
     	while(!isFinished()){
     		Robot.drivetrainSubsystem.tankDrive(Robot.oi.joystick1.getY(), Robot.oi.joystick2.getY());
     		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
-    		Robot.conveyorSubsystem.setSpeedTarget(Robot.oi.joystick4.getY());
+    		//Robot.conveyorSubsystem.setSpeedTarget(Robot.oi.joystick4.getY());
+    		if(Robot.oi.joystick4.getTrigger()){
+    			if(!Robot.conveyorSubsystem.distancePIDController.isEnable()){
+    				Robot.conveyorSubsystem.setDistanceTarget(Robot.conveyorSubsystem.conveyorEncoder.getDistance());
+    				Robot.conveyorSubsystem.enableDistanceControl();
+    			}
+    		}else if(Robot.oi.joystick4.getRawButton(11)){
+    			if(!Robot.conveyorSubsystem.distancePIDController.isEnable()){
+    				Robot.conveyorSubsystem.setDistanceTarget(ConveyorSubsystem.STAGE_0);
+    				Robot.conveyorSubsystem.enableDistanceControl();
+    			}
+    		}else if(Robot.oi.joystick4.getRawButton(9)){
+    			if(!Robot.conveyorSubsystem.distancePIDController.isEnable()){
+    				Robot.conveyorSubsystem.setDistanceTarget(ConveyorSubsystem.STAGE_1);
+    				Robot.conveyorSubsystem.enableDistanceControl();
+    			}
+    		}else{
+    			if(Robot.conveyorSubsystem.distancePIDController.isEnable()){
+    				Robot.conveyorSubsystem.disableDistanceControl();
+    			}
+    			Robot.conveyorSubsystem.conveyorMotor.set(Robot.oi.joystick4.getY());
+    		}
+    		SmartDashboard.putNumber("Conveyor Encoder Value", Robot.conveyorSubsystem.conveyorEncoder.getDistance());
     	}
     }
 

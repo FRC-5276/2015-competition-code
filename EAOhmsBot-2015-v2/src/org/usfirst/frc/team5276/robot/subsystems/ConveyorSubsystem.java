@@ -21,12 +21,17 @@ public class ConveyorSubsystem extends Subsystem {
 	public static final double UPR = 360; //Encoder Units Per Revolution
 	public static final double DPP = SPROCKET_CIRCUMFERENCE/UPR; //Distance Per Pulse
 	
-	public static final double DISTANCE_KP = 0.0;
+	public static final double DISTANCE_KP = 0.01;
 	public static final double DISTANCE_KI = 0.0;
-	public static final double DISTANCE_KD = 0.0;
-	public static final double SPEED_KP = 0.0;
+	public static final double DISTANCE_KD = 0.1;
+	public static final double SPEED_KP = 0.01;
 	public static final double SPEED_KI = 0.0;
 	public static final double SPEED_KD = 0.0;
+	
+	public static final double STAGE_0 = 0;
+	public static final double STAGE_1 = 313.75;
+	public static final double STAGE_2 = 605.5;
+	public static final double STAGE_3 = 895.75;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -83,8 +88,10 @@ public class ConveyorSubsystem extends Subsystem {
 			speedPIDOutput);
 	
 	public ConveyorSubsystem(){
-		conveyorEncoder.setDistancePerPulse(DPP);
-		distancePIDController.setPercentTolerance(20.0);
+		//conveyorEncoder.setDistancePerPulse(DPP);
+		//distancePIDController.setPercentTolerance(15.0);
+		distancePIDController.setOutputRange(-0.5, 0.5);
+		//speedPIDController.enable();
 	}
 	
 	/**
