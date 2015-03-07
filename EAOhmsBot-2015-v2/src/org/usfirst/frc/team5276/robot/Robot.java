@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		System.out.println("HELLO WORLD PLEASE WORK BLA BLA BLA");
-		LiveWindow.addActuator("conveyorSubsystem", "speedController", conveyorSubsystem.speedPIDController);
+//		LiveWindow.addActuator("conveyorSubsystem", "speedController", conveyorSubsystem.speedPIDController);
         // instantiate the command used for the autonomous period
 //        autonomousCommand = new MoveTimeCommand(0.5, 3); //TODO add params to smart dashboard
 //		autonomousCommand = conveyorMotor.set(0.1);

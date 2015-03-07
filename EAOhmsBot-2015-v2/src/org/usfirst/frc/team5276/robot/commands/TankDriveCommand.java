@@ -29,23 +29,44 @@ public class TankDriveCommand extends Command {
     		Robot.intakeSubsystem.setIntake(Robot.oi.joystick3.getY());
     		//Robot.conveyorSubsystem.setSpeedTarget(Robot.oi.joystick4.getY());
     		if(Robot.oi.joystick4.getTrigger()){
-    			if(!Robot.conveyorSubsystem.distancePIDController.isEnable()){
-    				Robot.conveyorSubsystem.setDistanceTarget(Robot.conveyorSubsystem.conveyorEncoder.getDistance());
-    				Robot.conveyorSubsystem.enableDistanceControl();
+    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.setSetpoint(Robot.conveyorSubsystem.conveyorEncoder.getDistance());
+    				Robot.conveyorSubsystem.enable();
+    			}else if(Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.conveyorMotor.set(0);
     			}
     		}else if(Robot.oi.joystick4.getRawButton(11)){
-    			if(!Robot.conveyorSubsystem.distancePIDController.isEnable()){
-    				Robot.conveyorSubsystem.setDistanceTarget(ConveyorSubsystem.STAGE_0);
-    				Robot.conveyorSubsystem.enableDistanceControl();
+    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.setSetpoint(ConveyorSubsystem.STAGE_0);
+    				Robot.conveyorSubsystem.enable();
+    			}else if(Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.conveyorMotor.set(0);
+    				
     			}
     		}else if(Robot.oi.joystick4.getRawButton(9)){
-    			if(!Robot.conveyorSubsystem.distancePIDController.isEnable()){
-    				Robot.conveyorSubsystem.setDistanceTarget(ConveyorSubsystem.STAGE_1);
-    				Robot.conveyorSubsystem.enableDistanceControl();
+    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.setSetpoint(ConveyorSubsystem.STAGE_1);
+    				Robot.conveyorSubsystem.enable();
+    			}else if(Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.conveyorMotor.set(0);
+    			}
+    		}else if(Robot.oi.joystick4.getRawButton(7)){
+    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.setSetpoint(ConveyorSubsystem.STAGE_2);
+    				Robot.conveyorSubsystem.enable();
+    			}else if(Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.conveyorMotor.set(0);
+    			}
+    		}else if(Robot.oi.joystick4.getRawButton(8)){
+    			if(!Robot.conveyorSubsystem.getPIDController().isEnable() && !Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.setSetpoint(ConveyorSubsystem.STAGE_3);
+    				Robot.conveyorSubsystem.enable();
+    			}else if(Robot.conveyorSubsystem.onTarget()){
+    				Robot.conveyorSubsystem.conveyorMotor.set(0);
     			}
     		}else{
-    			if(Robot.conveyorSubsystem.distancePIDController.isEnable()){
-    				Robot.conveyorSubsystem.disableDistanceControl();
+    			if(Robot.conveyorSubsystem.getPIDController().isEnable()){
+    				Robot.conveyorSubsystem.disable();
     			}
     			Robot.conveyorSubsystem.conveyorMotor.set(Robot.oi.joystick4.getY());
     		}
