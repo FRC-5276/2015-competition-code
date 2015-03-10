@@ -11,19 +11,21 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveDistanceCommand extends Command {
 	
-	double distance;
+	double leftDistance;
+	double rightDistance;
 
-    public MoveDistanceCommand(double distance) {
+    public MoveDistanceCommand(double leftDistance, double rightDistance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	this.distance = distance;
+    	this.leftDistance= leftDistance;
+    	this.rightDistance = rightDistance;
     	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivetrain.leftDriveControl.setSetpoint(distance);
-    	Robot.drivetrain.rightDriveControl.setSetpoint(-distance);
+    	Robot.drivetrain.leftDriveControl.setSetpoint(leftDistance);
+    	Robot.drivetrain.rightDriveControl.setSetpoint(-rightDistance);
     	drivetrain.leftDriveControl.enable();
     	drivetrain.rightDriveControl.enable();
     }

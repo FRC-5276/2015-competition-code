@@ -22,9 +22,7 @@ public class SetConveyorPositionCommand extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void setConveyor(double setPoint){
-		conveyor.setSetpoint(setPoint);
-    }
+
     protected void initialize() {
     	conveyor.setSetpoint(distance);
     }
