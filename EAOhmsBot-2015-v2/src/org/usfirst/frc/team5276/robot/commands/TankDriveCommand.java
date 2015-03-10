@@ -54,7 +54,7 @@ public class TankDriveCommand extends Command {
     			conveyor.enable();
     		}else{
     			conveyor.disable();
-    			conveyor.conveyorMotor.set(oi.joystick4.getY());
+    			conveyor.setPower(oi.joystick4.getY());
     		}
     		SmartDashboard.putNumber("Conveyor Encoder Value", conveyor.conveyorEncoder.getDistance());
     	}
