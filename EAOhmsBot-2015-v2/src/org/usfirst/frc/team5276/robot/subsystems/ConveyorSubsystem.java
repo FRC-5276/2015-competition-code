@@ -69,6 +69,24 @@ public class ConveyorSubsystem extends PIDSubsystem {
     	return conveyorEncoder.getDistance();
     }
     
+    public int getCurrentStageSection() {
+    	double e = conveyorEncoder.getDistance();
+    	if (e < STAGE_0) {
+    		return 0;
+    	}
+    	else if (e > STAGE_0 && e <= STAGE_1) {
+    		return 1;
+    	}
+    	else if (e > STAGE_1 && e <= STAGE_2) {
+    		return 2;
+    	}
+    	else if (e > STAGE_2 && e <= STAGE_3) {
+    		return 3;
+    	}
+    	else {
+    		return 4;
+    	}
+    }
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
