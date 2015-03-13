@@ -37,7 +37,15 @@ public class TankDriveCommand extends Command {
     		drivetrain.arcadeDrive(oi.joystick1.getY(), oi.joystick1.getX());
     		intake.setIntake(-oi.joystick3.getY());
 //    		conveyorSubsystem.setSpeedTarget(oi.joystick4.getY());
-    		if(oi.joystick4.getTrigger()){
+    		if (oi.joystick4.getPOV()==0 && conveyor.isEnabled()) {
+    			setConveyor(conveyor.getNextStageTarget(true));
+    			conveyor.enable();
+    		}
+    		else if (oi.joystick4.getPOV(0)==180 && conveyor.isEnabled()) {
+    			setConveyor(conveyor.getNextStageTarget(false));
+    			conveyor.enable();
+    		}
+    		else if(oi.joystick4.getTrigger()){
     			setConveyor(conveyor.conveyorEncoder.getDistance());
     			conveyor.enable();
     		}else if(oi.joystick4.getRawButton(3)){
@@ -61,6 +69,11 @@ public class TankDriveCommand extends Command {
     			conveyor.conveyorEncoder.reset();
     		}
     		SmartDashboard.putNumber("Conveyor Encoder Value", conveyor.conveyorEncoder.getDistance());
+    		SmartDashboard.putNumber("NextUpStage", conveyor.getNextStageTarget(true));
+    		SmartDashboard.putNumber("NextDownStage", conveyor.getNextStageTarget(false));
+    		SmartDashboard.putBoolean("Safety", !oi.joystick4.getRawButton(2));
+
+    		
     	//}
     }
 

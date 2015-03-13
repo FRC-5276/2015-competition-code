@@ -69,22 +69,27 @@ public class ConveyorSubsystem extends PIDSubsystem {
     	return conveyorEncoder.getDistance();
     }
     
-    public int getCurrentStageSection() {
+    /**
+     * 
+     * @param direction
+     * @return
+     */
+    public double getNextStageTarget(boolean direction) {
     	double e = conveyorEncoder.getDistance();
     	if (e < STAGE_0) {
-    		return 0;
+    		return STAGE_0;
     	}
     	else if (e > STAGE_0 && e <= STAGE_1) {
-    		return 1;
+    		return direction? STAGE_0 : STAGE_1;
     	}
     	else if (e > STAGE_1 && e <= STAGE_2) {
-    		return 2;
+    		return direction? STAGE_1 : STAGE_2;
     	}
     	else if (e > STAGE_2 && e <= STAGE_3) {
-    		return 3;
+    		return direction? STAGE_2 : STAGE_3;
     	}
     	else {
-    		return 4;
+    		return STAGE_3;
     	}
     }
     protected void usePIDOutput(double output) {
@@ -117,6 +122,10 @@ public class ConveyorSubsystem extends PIDSubsystem {
     	if(getPIDController().isEnable()){
     		super.disable();
     	}
+    }
+    
+    public boolean isEnabled(){
+    	return getPIDController().isEnable();
     }
 }
 
