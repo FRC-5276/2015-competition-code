@@ -31,12 +31,12 @@ public class TankDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(!isFinished()){
+    	//while(!isFinished()){
     		SmartDashboard.putNumber("Conveyor Encoder", conveyor.conveyorEncoder.getDistance());
     		
-    		drivetrain.tankDrive(oi.joystick1.getY(), oi.joystick2.getY());
-    		intake.setIntake(oi.joystick3.getY());
-    		//conveyorSubsystem.setSpeedTarget(oi.joystick4.getY());
+    		drivetrain.arcadeDrive(oi.joystick1.getY(), oi.joystick1.getX());
+    		intake.setIntake(-oi.joystick3.getY());
+//    		conveyorSubsystem.setSpeedTarget(oi.joystick4.getY());
     		if(oi.joystick4.getTrigger()){
     			setConveyor(conveyor.conveyorEncoder.getDistance());
     			conveyor.enable();
@@ -54,10 +54,14 @@ public class TankDriveCommand extends Command {
     			conveyor.enable();
     		}else{
     			conveyor.disable();
-    			conveyor.setPower(oi.joystick4.getY());
+    			conveyor.setPower(oi.joystick4.getY(), !oi.joystick4.getRawButton(2));
+    		}
+    		
+    		if(oi.joystick4.getRawButton(11)){
+    			conveyor.conveyorEncoder.reset();
     		}
     		SmartDashboard.putNumber("Conveyor Encoder Value", conveyor.conveyorEncoder.getDistance());
-    	}
+    	//}
     }
 
     // Make this return true when this Command no longer needs to run execute()

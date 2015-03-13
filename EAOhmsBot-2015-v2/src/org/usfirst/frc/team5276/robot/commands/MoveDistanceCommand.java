@@ -24,10 +24,10 @@ public class MoveDistanceCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivetrain.leftDriveControl.setSetpoint(leftDistance);
-    	Robot.drivetrain.rightDriveControl.setSetpoint(-rightDistance);
-    	drivetrain.leftDriveControl.enable();
-    	drivetrain.rightDriveControl.enable();
+    	//Robot.drivetrain.leftDriveControl.setSetpoint(leftDistance);
+    	//Robot.drivetrain.rightDriveControl.setSetpoint(-rightDistance);
+    	//drivetrain.leftDriveControl.enable();
+    	//drivetrain.rightDriveControl.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,14 +37,14 @@ public class MoveDistanceCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.drivetrain.leftDriveControl.onTarget() && Robot.drivetrain.rightDriveControl.onTarget();
+        return true;//Robot.drivetrain.leftDriveControl.onTarget() && Robot.drivetrain.rightDriveControl.onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.leftDriveControl.disable();
-    	drivetrain.rightDriveControl.disable();
-    	drivetrain.drive.stopMotor();
+    	//drivetrain.leftDriveControl.disable();
+    	//drivetrain.rightDriveControl.disable();
+    	//drivetrain.drive.stopMotor();
     }
 
     // Called when another command which requires one or more of the same

@@ -23,16 +23,16 @@ public class ConveyorSubsystem extends PIDSubsystem {
 
 	
 	public static final double KP = 0.005;
-	public static final double KI = 0.0001;
-	public static final double KD = 0.0005;
+	public static final double KI = 0;//.001;//.0001;
+	public static final double KD = 0.0005;//.0005;
 	
 	public static final double STAGE_0 = 0;
 	public static final double STAGE_1 = 313.75;
-	public static final double STAGE_2 = 605.5;
+	public static final double STAGE_2 = 564.0;
 	public static final double STAGE_3 = 895.75;
 	
 	public static final double MIN_LIMIT = STAGE_0;
-	public static final double MAX_LIMIT = 900.0;
+	public static final double MAX_LIMIT = 1060.0;
 	//public DigitalInput upSwitch = new DigitalInput(RobotMap.upSwitchPort);
 	//public DigitalInput downSwitch = new DigitalInput(RobotMap.downSwitchPort);
 	public static final double SPROCKET_DIAMETER = 6; //inches
@@ -51,7 +51,7 @@ public class ConveyorSubsystem extends PIDSubsystem {
         // setSetpoint() -  Sets where the PID controller should move the system
         //                  to
         // enable() - Enables the PID controller.
-    	setOutputRange(-0.5, 0.5);
+    	setOutputRange(-0.6, 0.6);
     	//enable();
     	setPercentTolerance(20.0);
     	//conveyorOutput.enable();    	conveyorEncoder.setDistancePerPulse(SPROCKET_CIRCUMFERENCE/360);
@@ -80,8 +80,8 @@ public class ConveyorSubsystem extends PIDSubsystem {
     	conveyorMotor.set(output);
     }
     
-    public void setPower(double power){
-    	if((conveyorEncoder.getDistance() <= MIN_LIMIT && power < 0) || (conveyorEncoder.getDistance() >= MAX_LIMIT && power > 0)){ //TODO test power directions
+    public void setPower(double power, boolean enableSafety){
+    	if(enableSafety && ((conveyorEncoder.getDistance() <= MIN_LIMIT && power < 0) || (conveyorEncoder.getDistance() >= MAX_LIMIT && power > 0))){ //TODO test power directions
     		power = 0;
     	}
     	conveyorMotor.set(power);
@@ -89,14 +89,14 @@ public class ConveyorSubsystem extends PIDSubsystem {
     
     @Override
     public void enable(){
-    	if(getPIDController().isEnable()){
+    	if(!getPIDController().isEnable()){
     		super.enable();
     	}
     }
     
     @Override
     public void disable(){
-    	if(!getPIDController().isEnable()){
+    	if(getPIDController().isEnable()){
     		super.disable();
     	}
     }
