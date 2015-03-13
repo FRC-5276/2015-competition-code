@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5276.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -83,4 +84,20 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    
+    CameraServer server;
+    
+    public Robot() {
+	    	try{
+			String cam = "cam0";
+	    	
+	    	server = CameraServer.getInstance();
+	    	server.setQuality(50);
+	    	server.startAutomaticCapture(cam);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+    }
+    
 }
