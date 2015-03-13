@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		System.out.println("HELLO WORLD PLEASE WORK BLA BLA BLA");
-		autonomousCommand = new MoveForwardCommandGroup();
+		autonomousCommand = new MoveTimeCommand(0.5, 3);
     }
 	
 	public void disabledPeriodic() {

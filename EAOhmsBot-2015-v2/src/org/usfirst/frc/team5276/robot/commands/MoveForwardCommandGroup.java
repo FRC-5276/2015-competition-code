@@ -24,7 +24,6 @@ public class MoveForwardCommandGroup extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new MoveDistanceCommand(12, 12));
-    	addSequential(new MoveDistanceCommand(0, 0));
+    	addSequential(new MoveTimeCommand(0.5, 3));
     }
 }
