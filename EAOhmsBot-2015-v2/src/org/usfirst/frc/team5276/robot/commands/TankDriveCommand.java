@@ -33,8 +33,8 @@ public class TankDriveCommand extends Command {
     protected void execute() {
     	//while(!isFinished()){
     		SmartDashboard.putNumber("Conveyor Encoder", conveyor.conveyorEncoder.getDistance());
-    		
-    		drivetrain.arcadeDrive(oi.joystick1.getY(), -oi.joystick1.getX());
+    		double throttle = -((oi.joystick1.getThrottle()-1)/2);
+    		drivetrain.arcadeDrive((oi.joystick1.getY()*throttle), (-oi.joystick1.getX()*throttle));
     		intake.setIntake(-oi.joystick3.getY());
 //    		conveyorSubsystem.setSpeedTarget(oi.joystick4.getY());
     		if (oi.joystick4.getPOV()==0 && conveyor.isEnabled()) {
