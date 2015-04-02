@@ -33,39 +33,39 @@ public class TankDriveCommand extends Command {
     protected void execute() {
     	//while(!isFinished()){
     		SmartDashboard.putNumber("Conveyor Encoder", conveyor.conveyorEncoder.getDistance());
-    		double throttle = -((oi.joystick1.getThrottle()-1)/2);
-    		drivetrain.arcadeDrive((oi.joystick1.getY()*throttle), (-oi.joystick1.getX()*throttle));
-    		intake.setIntake(-oi.joystick3.getY());
+    		double throttle = -((oi.joystick4.getThrottle()-1)/2);
+    		drivetrain.tankDrive((oi.joystick4.getY()*throttle), (oi.joystick3.getY()*throttle));
+//    		intake.setIntake(-oi.joystick3.getY());
 //    		conveyorSubsystem.setSpeedTarget(oi.joystick4.getY());
-    		if (oi.joystick4.getPOV()==0 && conveyor.isEnabled()) {
+    		if (oi.joystick1.getPOV()==0 && conveyor.isEnabled()) {
     			setConveyor(conveyor.getNextStageTarget(true));
     			conveyor.enable();
     		}
-    		else if (oi.joystick4.getPOV(0)==180 && conveyor.isEnabled()) {
+    		else if (oi.joystick1.getPOV(0)==180 && conveyor.isEnabled()) {
     			setConveyor(conveyor.getNextStageTarget(false));
     			conveyor.enable();
     		}
-    		else if(oi.joystick4.getTrigger()){
+    		else if(oi.joystick1.getTrigger()){
     			setConveyor(conveyor.conveyorEncoder.getDistance());
     			conveyor.enable();
-    		}else if(oi.joystick4.getRawButton(3)){
+    		}else if(oi.joystick1.getRawButton(3)){
     			setConveyor(ConveyorSubsystem.STAGE_0);
     			conveyor.enable();
-    		}else if(oi.joystick4.getRawButton(5)){
+    		}else if(oi.joystick1.getRawButton(5)){
     			setConveyor(ConveyorSubsystem.STAGE_1);
     			conveyor.enable();
-    		}else if(oi.joystick4.getRawButton(4)){
+    		}else if(oi.joystick1.getRawButton(4)){
     			setConveyor(ConveyorSubsystem.STAGE_2);
     			conveyor.enable();
-    		}else if(oi.joystick4.getRawButton(6)){
+    		}else if(oi.joystick1.getRawButton(6)){
     			setConveyor(ConveyorSubsystem.STAGE_3);
     			conveyor.enable();
     		}else{
     			conveyor.disable();
-    			conveyor.setPower(oi.joystick4.getY(), !oi.joystick4.getRawButton(2));
+    			conveyor.setPower(oi.joystick1.getY(), !oi.joystick1.getRawButton(2));
     		}
     		
-    		if(oi.joystick4.getRawButton(11)){
+    		if(oi.joystick1.getRawButton(11)){
     			conveyor.conveyorEncoder.reset();
     		}
     		SmartDashboard.putNumber("Conveyor Encoder Value", conveyor.conveyorEncoder.getDistance());

@@ -104,7 +104,7 @@ public class ConveyorSubsystem extends PIDSubsystem {
     }
     
     public void setPower(double power, boolean enableSafety){
-    	if(enableSafety && ((conveyorEncoder.getDistance() <= MIN_LIMIT && power < 0) || (conveyorEncoder.getDistance() >= MAX_LIMIT && power > 0))){ //TODO test power directions
+    	if(enableSafety && ((conveyorEncoder.getDistance() <= MIN_LIMIT && power < 0) || (conveyorEncoder.getDistance() >= MAX_LIMIT && power > 0))){ //todo test power directions
     		power = 0;
     	}
     	conveyorMotor.set(power);

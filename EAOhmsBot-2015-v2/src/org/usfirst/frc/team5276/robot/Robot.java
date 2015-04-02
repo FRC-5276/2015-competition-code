@@ -23,7 +23,7 @@ import org.usfirst.frc.team5276.robot.subsystems.IntakeSubsystem;
  */
 public class Robot extends IterativeRobot {
 	public static final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
-	public static final IntakeSubsystem intake = new IntakeSubsystem();
+//	public static final IntakeSubsystem intake = new IntakeSubsystem();
 	public static final ConveyorSubsystem conveyor = new ConveyorSubsystem();
 	public static OI oi;
 
