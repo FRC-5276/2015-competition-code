@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class TankDriveCommand extends Command {
 	
-	
+	public boolean ArcadeDrive = true;
 
     public TankDriveCommand() {
         // Use requires() here to declare subsystem dependencies
@@ -23,20 +23,33 @@ public class TankDriveCommand extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	//Robot.conveyorSubsystem.enableSpeedControl();
+
     }
     
     protected void setConveyor(double setPoint){
 		conveyor.setSetpoint(setPoint);
     }
-
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//while(!isFinished()){
+//    	while(!isFinished()){
     		SmartDashboard.putNumber("Conveyor Encoder", conveyor.conveyorEncoder.getDistance());
     		double throttle = -((oi.joystick4.getThrottle()-1)/2);
-    		drivetrain.tankDrive((oi.joystick4.getY()*throttle), (oi.joystick3.getY()*throttle));
 //    		intake.setIntake(-oi.joystick3.getY());
 //    		conveyorSubsystem.setSpeedTarget(oi.joystick4.getY());
+    		if (ArcadeDrive) {
+    			drivetrain.arcadeDrive((oi.joystick4.getY()*throttle), (oi.joystick4.getX()));
+    		}
+    		else {
+        		drivetrain.tankDrive((oi.joystick4.getY()*throttle), (oi.joystick3.getY()*throttle));
+    		}
+    		if (oi.joystick4.getRawButton(10)) {
+    			ArcadeDrive = true;
+    		}
+    		if (oi.joystick4.getRawButton(9)){
+    			ArcadeDrive = false;
+    		}
+    		
+
     		if (oi.joystick1.getPOV()==0 && conveyor.isEnabled()) {
     			setConveyor(conveyor.getNextStageTarget(true));
     			conveyor.enable();
@@ -74,7 +87,7 @@ public class TankDriveCommand extends Command {
     		SmartDashboard.putBoolean("Safety", !oi.joystick4.getRawButton(2));
 
     		
-    	//}
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

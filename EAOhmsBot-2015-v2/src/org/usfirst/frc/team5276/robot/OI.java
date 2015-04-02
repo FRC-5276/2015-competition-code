@@ -1,7 +1,12 @@
 package org.usfirst.frc.team5276.robot;
 
+import java.awt.Button;
+
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -37,8 +42,10 @@ public class OI {
     public Joystick joystick1 = new Joystick(0);
     public Joystick joystick3 = new Joystick(1);
     public Joystick joystick4 = new Joystick(2);
-
+    public JoystickButton switchDrive = new JoystickButton(joystick4, 10);
+    
     public OI(){
+//    	switchDrive.whenPressed(new DrivetrainSwitcher());
     }
 	
 }
